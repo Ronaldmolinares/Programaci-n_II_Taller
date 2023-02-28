@@ -53,13 +53,13 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int id, String name, double price, int stock, Supplier suplier, Category category) {
+	public Product(int id, String name, double price, int stock, Supplier suplier,ArrayList<Category> listCategory) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
 		this.suplier = suplier;
-		this.category = category;
+		this.listCategory = listCategory;
 	}
 	public int findCategory(int id) {
 		int position = -1;

@@ -42,23 +42,12 @@ public class Supplier extends Person {
 		}
 		return position;
 	}
-	public int findCategory(int id) {
-		int position = -1;
-		for (Category category : listCategorys) {
-			if (id == category.getId()) {
-				position = listProducts.indexOf(category);
-			}
-		}
-		return position;
-	}
+
 	public void addProduct(Product p) {
 		listProducts.add(p);
 		
 	}
 
-	public Category category(int position) {
-		return listCategorys.get(position);
-	}
 	
 
 }

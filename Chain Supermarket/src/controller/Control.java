@@ -121,10 +121,11 @@ public class Control {
 		if (s.findProduct(id) == -1) {
 			Product p = new Product();
 			p = new Product(id, io.readGraphicString("Digite el nombre del producto"),
-					io.readGraphicDouble("Digite el precio"), 
-					io.readGraphicInt("Digite el stock"),this.showSupplier(io.readGraphicShort("Digite el número de Rut del proveedor")),
-					this.showCategory(io.readGraphicInt("Digite el número de ID de la categoría")));		 
+					io.readGraphicDouble("Digite el precio"),
+ io.readGraphicInt("Digite el stock"),this.showSupplier(io.readGraphicShort("Digite el número de Rut del proveedor")),
+					this.createCategory(io.readGraphicInt("Digite el número de ID de la categoría")));		 
 			s.addProduct(p);
+			io.showGraphicMessage(""+s.getListProducts());
 			io.showGraphicMessage("Product generated");
 		} else {
 			Exception e = new DuplicateException("Ya existe este producto");
@@ -132,15 +133,16 @@ public class Control {
 		}
 	}
 
-	private Category showCategory(int id) {
-		Supplier s =new Supplier();
-		if (s.findCategory(id)!=-1) {
-			s.category(s.findCategory(id));
+	private ArrayList<Category> createCategory(int id) {
+		Product p=new Product();
+		if (p.findCategory(id)==-1) {
+			Category c= new Category(id,io.readGraphicString("Digite el nombre de la categoría"),io.readGraphicString("Digite una descripción"));
+			p.addCategory(c);
 		}else {
-			Exception e=new ValueNotFoundException("No existe este provedor");
+			Exception e=new ValueNotFoundException("No existe esta categoría");
 			io.showGraphicErrorMessage(e.getMessage());
 		}
-		return s.category(s.findCategory(id));
+		return p.getListCategory();
 	}
 
 	private Supplier showSupplier(short rut) {
