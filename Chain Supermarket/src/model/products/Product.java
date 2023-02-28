@@ -1,5 +1,7 @@
 package model.products;
 
+import java.util.ArrayList;
+
 import model.Supplier;
 
 public class Product {
@@ -9,7 +11,14 @@ public class Product {
 	private int stock;
 	Supplier suplier=new Supplier();
 	Category category =new Category();
-	
+	private ArrayList<Category> listCategory= new ArrayList<Category>();
+
+	public ArrayList<Category> getListCategory() {
+		return listCategory;
+	}
+	public void setListCategory(ArrayList<Category> listCategory) {
+		this.listCategory = listCategory;
+	}
 	public int getId() {
 		return id;
 	}
@@ -43,7 +52,7 @@ public class Product {
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Product(int id, String name, double price, int stock, Supplier suplier, Category category) {
 		this.id = id;
 		this.name = name;
@@ -52,7 +61,20 @@ public class Product {
 		this.suplier = suplier;
 		this.category = category;
 	}
+	public int findCategory(int id) {
+		int position = -1;
+		for (Category category : listCategory) {
+			if (id == category.getId()) {
+				position = listCategory.indexOf(category);
+			}
+		}
+		return position;
+	}
 
+
+	public Category category(int position) {
+		return listCategory.get(position);
+	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", stock=" + stock + "]";
